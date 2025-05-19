@@ -49,6 +49,10 @@
     --text-9xl--line-height: 1;
     --radius-2xl: 1rem;
     --radius-3xl: 1.5rem;
+    --animate-spin: spin 1s linear infinite;
+    --animate-ping: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+    --animate-pulse: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    --animate-bounce: bounce 1s infinite;
     --blur-sm: 8px;
     --blur-2xl: 40px;
     --default-transition-duration: 150ms;
@@ -272,8 +276,14 @@
   .m-5 {
     margin: calc(var(--spacing) * 5);
   }
+  .m-10 {
+    margin: calc(var(--spacing) * 10);
+  }
   .m-22 {
     margin: calc(var(--spacing) * 22);
+  }
+  .m-30 {
+    margin: calc(var(--spacing) * 30);
   }
   .m-32 {
     margin: calc(var(--spacing) * 32);
@@ -283,6 +293,24 @@
   }
   .mt-5 {
     margin-top: calc(var(--spacing) * 5);
+  }
+  .mt-10 {
+    margin-top: calc(var(--spacing) * 10);
+  }
+  .mt-30 {
+    margin-top: calc(var(--spacing) * 30);
+  }
+  .mt-32 {
+    margin-top: calc(var(--spacing) * 32);
+  }
+  .ml-10 {
+    margin-left: calc(var(--spacing) * 10);
+  }
+  .ml-30 {
+    margin-left: calc(var(--spacing) * 30);
+  }
+  .ml-32 {
+    margin-left: calc(var(--spacing) * 32);
   }
   .block {
     display: block;
@@ -312,6 +340,10 @@
     width: calc(var(--spacing) * 36);
     height: calc(var(--spacing) * 36);
   }
+  .size-40 {
+    width: calc(var(--spacing) * 40);
+    height: calc(var(--spacing) * 40);
+  }
   .size-60 {
     width: calc(var(--spacing) * 60);
     height: calc(var(--spacing) * 60);
@@ -323,6 +355,9 @@
   .size-full {
     width: 100%;
     height: 100%;
+  }
+  .h-2 {
+    height: calc(var(--spacing) * 2);
   }
   .h-96 {
     height: calc(var(--spacing) * 96);
@@ -360,6 +395,9 @@
   .w-1\/7 {
     width: calc(1/7 * 100%);
   }
+  .w-32 {
+    width: calc(var(--spacing) * 32);
+  }
   .w-56 {
     width: calc(var(--spacing) * 56);
   }
@@ -377,6 +415,21 @@
   }
   .border-collapse {
     border-collapse: collapse;
+  }
+  .transform {
+    transform: var(--tw-rotate-x,) var(--tw-rotate-y,) var(--tw-rotate-z,) var(--tw-skew-x,) var(--tw-skew-y,);
+  }
+  .animate-bounce {
+    animation: var(--animate-bounce);
+  }
+  .animate-ping {
+    animation: var(--animate-ping);
+  }
+  .animate-pulse {
+    animation: var(--animate-pulse);
+  }
+  .animate-spin {
+    animation: var(--animate-spin);
   }
   .resize {
     resize: both;
@@ -443,6 +496,9 @@
   }
   .rounded {
     border-radius: 0.25rem;
+  }
+  .rounded-full {
+    border-radius: calc(infinity * 1px);
   }
   .border {
     border-style: var(--tw-border-style);
@@ -826,6 +882,13 @@
       }
     }
   }
+  .hover\:animate-pulse {
+    &:hover {
+      @media (hover: hover) {
+        animation: var(--animate-pulse);
+      }
+    }
+  }
   .hover\:bg-blue-950 {
     &:hover {
       @media (hover: hover) {
@@ -938,6 +1001,26 @@
       padding: calc(var(--spacing) * 4);
     }
   }
+}
+@property --tw-rotate-x {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-rotate-y {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-rotate-z {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-skew-x {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-skew-y {
+  syntax: "*";
+  inherits: false;
 }
 @property --tw-border-style {
   syntax: "*";
@@ -1128,9 +1211,40 @@
   inherits: false;
   initial-value: 1;
 }
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes ping {
+  75%, 100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+@keyframes pulse {
+  50% {
+    opacity: 0.5;
+  }
+}
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(-25%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: none;
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
 @layer properties {
   @supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {
     *, ::before, ::after, ::backdrop {
+      --tw-rotate-x: initial;
+      --tw-rotate-y: initial;
+      --tw-rotate-z: initial;
+      --tw-skew-x: initial;
+      --tw-skew-y: initial;
       --tw-border-style: solid;
       --tw-gradient-position: initial;
       --tw-gradient-from: #0000;
