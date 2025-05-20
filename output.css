@@ -31,6 +31,7 @@
     --color-green-800: oklch(44.8% 0.119 151.328);
     --color-green-900: oklch(39.3% 0.095 152.535);
     --color-green-950: oklch(26.6% 0.065 152.934);
+    --color-cyan-600: oklch(60.9% 0.126 221.723);
     --color-blue-200: oklch(88.2% 0.059 254.128);
     --color-blue-500: oklch(62.3% 0.214 259.815);
     --color-blue-800: oklch(42.4% 0.199 265.638);
@@ -57,6 +58,8 @@
     --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     --default-font-family: var(--font-sans);
     --default-mono-font-family: var(--font-mono);
+    --padding-10: 100px;
+    --padding-c-50: 200px;
   }
 }
 @layer base {
@@ -438,6 +441,9 @@
   .bg-blue-950 {
     background-color: var(--color-blue-950);
   }
+  .bg-cyan-600 {
+    background-color: var(--color-cyan-600);
+  }
   .bg-green-200 {
     background-color: var(--color-green-200);
   }
@@ -533,7 +539,10 @@
     padding: calc(var(--spacing) * 2);
   }
   .p-10 {
-    padding: calc(var(--spacing) * 10);
+    padding: var(--padding-10);
+  }
+  .p-c-50 {
+    padding: var(--padding-c-50);
   }
   .pt-\[1px\] {
     padding-top: 1px;
@@ -768,19 +777,9 @@
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
   }
-  .md\:bg-red-950 {
-    @media (width >= 48rem) {
-      background-color: var(--color-red-950);
-    }
-  }
   .lg\:grid-cols-3 {
     @media (width >= 64rem) {
       grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-  }
-  .lg\:bg-green-700 {
-    @media (width >= 64rem) {
-      background-color: var(--color-green-700);
     }
   }
   .xl\:grid-cols-4 {
